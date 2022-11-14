@@ -66,13 +66,23 @@ if ($result->num_rows > 0) {
     echo '<th>Date Completed</th>';
     echo '<th>Paid</th>';
     
+    if ($row["paid"] == 0)
+    {
+        echo '<th>Mark Paid</th>';
+    }
+
+
+
     echo '</tr>';
 
     while ($row = $result->fetch_assoc()){
         echo '<tr>';
         echo '<td>' . $row["dateDone"] . '</td>';
         echo '<td>' . $row["paid"] . '</td>';
-        
+        if ($row["paid"] == 0)
+    {
+        echo '<th>Mark Paid Button to go here</th>';
+    }
      
         echo '</tr>';
        
