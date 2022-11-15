@@ -12,10 +12,6 @@ $jobtableid =$_GET["id"];
 $zone_id = $_GET['zone'];
 
 
-//if statement to chec if jobs have been paid and display pay now link if not
-
-
-
 
 ?>
 <html>
@@ -49,7 +45,20 @@ $zone_id = $_GET['zone'];
     $street_name = $row["streetName"];
     
     
-    
+    if (isset($_GET['submit_paid'])) {
+        
+$sqltopayforjob = "UPDATE job_history SET paid=1 WHERE id = $jobtableid;";
+//button to update job as paid
+if ($conn->query($sqltopayforjob) === TRUE) {
+    echo "i hope this works";
+}
+else{
+    echo "Youve fucked this";
+}
+    }
+
+
+
     ?>  
 
 
@@ -81,7 +90,8 @@ if ($result->num_rows > 0) {
         echo '<td>' . $row["paid"] . '</td>';
         if ($row["paid"] == 0)
     {
-        echo '<th>Mark Paid Button to go here</th>';
+        $jobpaid = '<form action="jobhistory.php" method="get"><input type="hidden" name="id" value="'.$jobtableid.'"><input class="btn btn-success" type="submit" name="submit_paid" value="PAID"></form>';
+        echo '<td>'.$jobpaid.'</td>';
     }
      
         echo '</tr>';

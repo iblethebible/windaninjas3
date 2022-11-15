@@ -25,7 +25,7 @@ if (!isset($_SESSION['loggedin'])) {
 
             <button onClick="location.href = 'jobadd.php';" class="btn btn-success" type="button">Add Job</button>
 
-            <button onClick="location.href = 'jobupdate2.php';" class="btn btn-warning" type="button">development</button>
+            <button onClick="location.href = 'collect.php';" class="btn btn-warning" type="button">Collect mode *development*</button>
 
  <button onClick="location.href = 'logout.php'; " class="btn btn-danger" type="button">LOGOUT</button>
 

@@ -8,6 +8,7 @@ if (!isset($_SESSION['loggedin'])) {
 	?>
 <?php include "connectdb.php"; 
 
+
 	?>
 <html>
 	<head>
@@ -95,7 +96,9 @@ if (isset($_GET['submit_button'])) {
             echo '<td>' . $row["frequency"] . ' Weeks</td>';
             echo '<td>' . $row["dateLastDone"] . '</td>';
             echo '<td>' . $row["dateNextDue"] . '</td>';
-            echo '<td>' . $areanameprod . '</td>';
+            
+
+			echo '<td>' . $areanameprod . '</td>'; 
             echo '<td>' . $row["info"] . '</td>';
             echo '<td><a href="jobupdate.php?id=' . $row["id"] . '">UPDATE</a></td>';
 			echo '<td><a href="jobhistory.php?id=' . $row["id"] . '">History</a></td>';
@@ -152,7 +155,7 @@ if (isset($_GET['submit_button2'])) {
 
 
 	
-$sql = "SELECT id, houseNumName, streetName, price, frequency, info, dateNextDue, zone_id FROM job ORDER BY dateNextDue ASC";
+$sql = "SELECT id, houseNumName, streetName, price, frequency, info, dateNextDue, zone_id FROM job ORDER BY dateNextDue ASC;";
 
 
 
