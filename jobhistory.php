@@ -43,14 +43,18 @@ $zone_id = $_GET['zone'];
     $row = $result->fetch_assoc(); 
     $house_num = $row["houseNumName"];
     $street_name = $row["streetName"];
+    $job_history_id = $row["id"];
     
     
     if (isset($_GET['submit_paid'])) {
         
-$sqltopayforjob = "UPDATE job_history SET paid=1 WHERE id = $jobtableid;";
+$sqltopayforjob = "UPDATE job_history SET paid=1 WHERE id = $job_history_id";
 //button to update job as paid
 if ($conn->query($sqltopayforjob) === TRUE) {
-    echo "i hope this works";
+    echo '<div class="alert alert-success">
+            <strong>Success!</strong> JOB COMPLETED PAID.
+          </div>';
+          header("Refresh: 1; URL=jobhistory.php?id=" . $jobtableid);
 }
 else{
     echo "Youve fucked this";
@@ -63,6 +67,7 @@ else{
 
 
         <h1>Job history <br><?php echo $house_num . " " . $street_name?></h1>
+        <h2><a href="jobupdate.php?id=<?php echo $jobtableid?>">Return</a></h2>
 
 <?php
 $jobhistorysql = "SELECT * FROM job_history WHERE job_id = " . $jobtableid;
@@ -90,7 +95,7 @@ if ($result->num_rows > 0) {
         echo '<td>' . $row["paid"] . '</td>';
         if ($row["paid"] == 0)
     {
-        $jobpaid = '<form action="jobhistory.php" method="get"><input type="hidden" name="id" value="'.$jobtableid.'"><input class="btn btn-success" type="submit" name="submit_paid" value="PAID"></form>';
+        $jobpaid = '<form action="jobhistory.php" method="get"><input type="hidden" name="id" value="'.$job_history_id.'"><input class="btn btn-success" type="submit" name="submit_paid" value="PAID">';
         echo '<td>'.$jobpaid.'</td>';
     }
      

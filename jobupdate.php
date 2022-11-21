@@ -106,7 +106,7 @@ $job_frequency_days = $job_frequency * 7;
     $sql2 = "UPDATE job SET dateLastDone = NOW() WHERE id = $job_id;
         UPDATE job SET dateNextDue = DATE_ADD(NOW(), INTERVAL $job_frequency_days DAY) WHERE id = $job_id;
         /*UPDATE job SET paid = 1 WHERE id = $job_id;*/
-        INSERT INTO job_history (job_id, dateDone, paid) VALUES ($job_id, NOW(), 1);z";
+        INSERT INTO job_history (job_id, dateDone, paid) VALUES ($job_id, NOW(), 1);";
 
         if ($conn->multi_query($sql2) === TRUE) {
  
@@ -148,11 +148,12 @@ else {
 
 ?>
 
-<button onClick="location.href = 'jobs.php' ; " class="btn btn-secondary" type="button">Home</button>
+<button onClick="location.href = 'jobs.php' ; " class="btn btn-primary" type="button">Home</button>
+  <button onclick="location.href = 'profile.php' ; " class="btn btn-secondary" type="button">Manager mode</button>
 </div>
 
 <h1><?php echo $house_num . " " . $street_name?></h1>
-<a href="jobhistory.php?id=<?php echo $job_id?>">History</a>
+<h2><a href="jobhistory.php?id=<?php echo $job_id?>">History</a></h2>
 <div class="container">
 <div class="row">
 <div class="col-sm">
